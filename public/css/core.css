@@ -1,0 +1,67 @@
+ body, html {
+    
+    background: #fff url("../images/White-Paper-Texture-Background-520x390.jpg");
+    font-family: helvetica;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: scroll;
+    width: 100%;
+    
+}
+
+h1 {
+    font-family: 'Bevan', sans-serif;
+    font-size: 48px;
+    padding-top: 10px;
+    text-shadow: 4px 4px 1px #fff;
+}
+
+h2 {
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    font-family: 'Josefin Slab', sans-serif;
+    font-size: 38px;
+    font-weight: bold;
+    padding: 10px 0;
+    position: relative;
+    text-shadow: 2px 2px 1px #fff;
+    text-align: center;
+}
+
+p {
+    font-family: 'Josefin Slab', sans-serif;
+    font-size: 20px;
+}
+
+.dataSection {
+    background : black;
+    color : white;
+    font-family: 'Josefin Slab', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+    margin-bottom: 50px;
+}
+
+.mainLogo {
+    margin-bottom : 0;
+}
+
+.subline {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.links {
+    text-align: right;
+    margin-top: 50px;
+}
+
+.links a {
+    margin: 0 5px;
+}
+
+.hidden {
+    display: none;
+}
