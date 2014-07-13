@@ -77,17 +77,6 @@ var storeConcepts = function(concepts) {
         for(var i = 0; i < concepts.length; i++) {
             (function(newsSources, concepts, i) {
                 var concept = concepts[i];
-                var newField = {
-                    topic : concept,
-                    recurrance : 0
-                };
-                newsSources.update({name : "BBC UK"}, { $addToSet: { headlineTopics : newField} }, function(err) {
-                            if (err)  {
-                                console.warn(err.message);
-                            } else {
-                                console.log('successfully updated');
-                            }
-                });
                 newsSources.update({name : "BBC UK", headlineTopics : { "$elemMatch": { "topic": concept} }}, { $inc:   { "headlineTopics.$.recurrance" : 1}}, function(err) {
                             if (err)  {
                                 console.warn(err.message);

@@ -16,7 +16,7 @@ define([], function() {
         updateGraph : function() {
             var data = [];
             var topicsData = this.props.headLineData[0].headlineTopics;
-            var colors = ["#F7464A", "#46BFBD", "#FDB45C"];
+            var colors = ["#F7464A", "#46BFBD", "#FDB45C", "F34660", "405A83", "718EA7", "455D71", "E7ECF7", "FFF84C", "39E877", "4C95FF", "C639E8", "FF713F"];
             for(var i = 0; i < topicsData.length; i++) {
                 data.push({
                     value : topicsData[i].recurrance,
