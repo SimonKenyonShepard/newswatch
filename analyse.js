@@ -26,7 +26,7 @@ request(url, function(error, response, html){
 });
 */
 
-var inputParams = {};
+var commandLineParameters = {};
 
 for(var i = 0; i < process.argv.length; i++) {
     var parameter = process.argv[i].split("=");
