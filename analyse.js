@@ -4,7 +4,7 @@ var request = require('request'),
 	sentiment = require('Sentimental'),
     mongodb = require('mongodb');
 
-var AlchemyAPI = require('./alchemyapi_node/alchemyapi');
+var AlchemyAPI = require('./alchemy/alchemyapi');
 var alchemyapi = new AlchemyAPI();
 
 var url = "http://www.bbc.com/news/uk-28181045",
