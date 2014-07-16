@@ -11,6 +11,8 @@ var url = "http://www.bbc.com/news/uk-28181045",
 	TfIdf = natural.TfIdf,
     tfidf = new TfIdf(),
     analyze = sentiment.analyze;
+
+var speak = require("speakeasy-nlp");
 /*
 request(url, function(error, response, html){
 
@@ -43,10 +45,25 @@ var DBuri = 'mongodb://'+commandLineParameters.user+':'+commandLineParameters.pa
 request(feedSource, function(error, response, xml){
 
         parseString(xml, function (err, result) {
-            analyseArticles(result.rss.channel[0].item)
+            analyseArticles(result.rss.channel[0].item);
+            //getSentiment(result.rss.channel[0].item);
         });
         
 });
+
+var getSentiment = function(articles) {
+    var limit = articles.length > 5 ? 5 : articles.length;
+    var concepts = [];
+    for(var i = 0; i < limit; i++) {
+        //console.log(analyze(articles[i].title[0]));
+        //console.log(analyze(articles[i].description[0]));
+        console.log(articles[i].title[0]);
+        //console.log(speak.sentiment.analyze(articles[i].title[0]));
+        //console.log(speak.classify(articles[i].title[0]));
+        console.log(analyze(articles[i].title[0]));
+    }
+
+};
 
 
 
@@ -77,6 +94,17 @@ var storeConcepts = function(concepts) {
         for(var i = 0; i < concepts.length; i++) {
             (function(newsSources, concepts, i) {
                 var concept = concepts[i];
+                var newField = {
+                    topic : concept,
+                    recurrance : 0
+                };
+                newsSources.update({name : "BBC UK"}, { $addToSet: { headlineTopics : newField} }, function(err) {
+                            if (err)  {
+                                console.warn(err.message);
+                            } else {
+                                console.log('successfully updated');
+                            }
+                });
                 newsSources.update({name : "BBC UK", headlineTopics : { "$elemMatch": { "topic": concept} }}, { $inc:   { "headlineTopics.$.recurrance" : 1}}, function(err) {
                             if (err)  {
                                 console.warn(err.message);

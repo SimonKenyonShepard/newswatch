@@ -15,7 +15,8 @@
     "natural" : "*",
     "Sentimental" : "*",
     "xml2js" : "*",
-    "mongodb" : "*"
+    "mongodb" : "*",
+    "speakeasy-nlp" : "*"
   },
   "devDependencies": {
     "grunt": "~0.4.5",
