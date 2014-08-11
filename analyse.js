@@ -90,21 +90,23 @@ var storeConcepts = function(concepts) {
     mongodb.MongoClient.connect(DBuri, function(err, db) {
         if(err) throw err;
 
-        var newsSources = db.collection('newsSources');
+        var newsSources = db.collection('headlineTopics');
         for(var i = 0; i < concepts.length; i++) {
             (function(newsSources, concepts, i) {
                 var concept = concepts[i];
                 var newField = {
-                    topic : concept,
-                    recurrance : 0
+                    source : "BBC UK",
+                    topic : concept
                 };
-                newsSources.update({name : "BBC UK"}, { $addToSet: { headlineTopics : newField} }, function(err) {
+
+                newsSources.update(newField, { $inc: { recurrance: 1 } }, { upsert: true }, function(err) {
                             if (err)  {
                                 console.warn(err.message);
                             } else {
                                 console.log('successfully updated');
                             }
                 });
+                /*
                 newsSources.update({name : "BBC UK", headlineTopics : { "$elemMatch": { "topic": concept} }}, { $inc:   { "headlineTopics.$.recurrance" : 1}}, function(err) {
                             if (err)  {
                                 console.warn(err.message);
@@ -112,6 +114,7 @@ var storeConcepts = function(concepts) {
                                 console.log('successfully updated');
                             }
                 });
+*/
             }(newsSources, concepts, i));
 
         }

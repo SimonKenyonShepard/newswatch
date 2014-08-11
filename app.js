@@ -48,7 +48,7 @@ app.on("get:headLineData", function(encoding, req, res) {
   		if(err) throw err;
 
   		var newsSources = db.collection('newsSources');
-  		newsSources.find({name : "BBC UK"}).toArray(function(err, doc) {
+  		newsSources.find({name : "BBC UK"}).limit(1).toArray(function(err, doc) {
   			app.emit("render:headLineData", "UTF-8", req, res, doc);
   		});
   	});
